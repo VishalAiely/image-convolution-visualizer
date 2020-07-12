@@ -16,7 +16,7 @@ document.querySelector('#picture').onchange = function previewFile() {
 
         if (show.width > 1000 || show.height > 1000)
         {
-            let newscale = 500/show.width
+            let newscale = 400/show.width
             canvas.width *= newscale
             canvas.height *= newscale
              ctx.scale(newscale,newscale)
