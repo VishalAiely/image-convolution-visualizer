@@ -1,5 +1,11 @@
-<label for="avatar">Choose a picture:</label>
+<label for="avatar">Choose a picture:</label><br>
 
 <input type="file"
-       id="avatar" name="avatar"
-       accept="image/png, image/jpeg">
+       id="picture" name="avatar"
+       accept="image/png, image/jpeg"
+       onchange="previewFile()"
+       ><br>
+
+<img id="preview" height="200px" src="" style="max-width: 500px;" hidden>
+
+<script src="uploading.js"></script>
