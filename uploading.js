@@ -12,20 +12,21 @@ document.querySelector('#picture').onchange = function previewFile() {
         let ctx = canvas.getContext('2d')
 
         canvas.width = show.width
-        canvas.height = show.width
+        canvas.height = show.height
 
-        if (canvas.width > 1000 || canvas.height > 1000)
+        if (show.width > 1000 || show.height > 1000)
         {
-            ctx.scale(300/canvas.width,300/canvas.width)
+            let newscale = 500/show.width
+            canvas.width *= newscale
+            canvas.height *= newscale
+             ctx.scale(newscale,newscale)
         }
-
 
         ctx.drawImage(show,0,0)
 
 
-
         show.style.display = 'none'
-        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let imageData = ctx.getImageData(0, 0, show.width, show.height);
         let data = imageData.data;
         console.log(data)
 
