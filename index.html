@@ -10,9 +10,36 @@
        accept="image/png, image/jpeg"
        ><br>
 
-<img id="preview" height="200px" src="" style="max-width: 500px;" hidden>
-<canvas id="can" height="200px"></canvas>
+<img id="preview" src="" style="max-width: 500px;" hidden>
+<canvas id="can" height="200px"></canvas><br>
+
+
+
+<div id="matrixIn">
+       
+       <table style="width: 100px;">
+              <tr>
+                     <td><input id="00" value=0 style="width:50px;"></td>
+                     <td><input id="01" value=0 style="width:50px;"></td>
+                     <td><input id="02" value=0 style="width:50px;"></td>
+              </tr>
+              <tr>
+                     <td><input id="10" value=0 style="width:50px;"></td>
+                     <td><input id="11" value=1 style="width:50px;"></td>
+                     <td><input id="12" value=0 style="width:50px;"></td>
+              </tr>
+              <tr>
+                     <td><input id="20" value=0 style="width:50px;"></td>
+                     <td><input id="21" value=0 style="width:50px;"></td>
+                     <td><input id="22" value=0 style="width:50px;"></td>
+              </tr>
+       </table>
+</div>
+
+<button onclick="generateOut()">convolove</button>
+<canvas id="outputImage" height="200px"></canvas>
 
 <script src="uploading.js"></script>
+<script src="convolution.js"></script>
 </body>
 </html>
