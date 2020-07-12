@@ -1,11 +1,18 @@
+<html>
+<head>
+
+</head>
+<body>
 <label for="avatar">Choose a picture:</label><br>
 
 <input type="file"
        id="picture" name="avatar"
        accept="image/png, image/jpeg"
-       onchange="previewFile()"
        ><br>
 
 <img id="preview" height="200px" src="" style="max-width: 500px;" hidden>
+<canvas id="can" height="200px"></canvas>
 
 <script src="uploading.js"></script>
+</body>
+</html>

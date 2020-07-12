@@ -1,11 +1,43 @@
-function previewFile() {
+document.querySelector('#picture').onchange = function previewFile() {
     let show = document.querySelector('#preview')
     let file = document.querySelector('#picture').files[0]
     let reader = new FileReader()
 
     reader.onloadend = function() {
-        show.hidden = false
         show.src = reader.result
+    }
+
+    show.onload = function() {
+        let canvas = document.querySelector('#can')
+        let ctx = canvas.getContext('2d')
+
+        canvas.width = show.width
+        canvas.height = show.width
+
+        if (canvas.width > 1000 || canvas.height > 1000)
+        {
+            ctx.scale(300/canvas.width,300/canvas.width)
+        }
+
+
+        ctx.drawImage(show,0,0)
+
+
+
+        show.style.display = 'none'
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let data = imageData.data;
+        console.log(data)
+
+        //used to calculate greyscale value
+        let avg = 0
+        for (let i = 0; i < data.length; i+=4) {
+            avg = (data[i] + data[i+1] + data[i+2])/3
+
+            data[i] = data[i+1] = data[i+2] = avg
+        }
+
+        ctx.putImageData(imageData,0,0)
     }
 
     if(file) {
