@@ -15,7 +15,7 @@ function getVal(data, x, y, canvaswidth) {
     return data[getIndex(x,y,canvaswidth)]
 }
 
-function applyKernalAt(kernel, x, y, canvaswidth, canvasheight, kernelNegative, data) {
+function applyKernalAt(kernel, x, y, canvaswidth, canvasheight, data) {
     let sum = 0
     const xBreak = Math.floor(kernel[0].length/2)
     const yBreak = Math.floor(kernel.length/2)
@@ -50,6 +50,7 @@ function generateOut() {
     outputCanvas.width = inputCanvas.width
     outputCanvas.height = inputCanvas.height
     
+    //canvas contexts
     let incontext = inputCanvas.getContext('2d')
     let in_imagedata = incontext.getImageData(0,0,inputCanvas.width,inputCanvas.height)
     let in_data = in_imagedata.data
@@ -59,20 +60,16 @@ function generateOut() {
     let out_imagedata = outcontext.getImageData(0,0,outputCanvas.width,outputCanvas.height)
     let out_data = out_imagedata.data
 
-    let kernelNegative = false
-    kernel.forEach((row)=>{row.forEach((value)=>{
-        if(value < 0) kernelNegative = true
-    })})
-
-
+    //applys convolution using kernel
     for (let x = 0; x < outputCanvas.width; x++) {
         for (let y = 0; y < outputCanvas.height; y++) {
-            let calc = applyKernalAt(kernel,x,y,outputCanvas.width,outputCanvas.height,kernelNegative,in_data)
+            let calc = applyKernalAt(kernel,x,y,outputCanvas.width,outputCanvas.height,in_data)
             out_data[getIndex(x,y,outputCanvas.width)] = out_data[getIndex(x,y,outputCanvas.width)+1] = out_data[getIndex(x,y,outputCanvas.width)+2] = calc
             out_data[getIndex(x,y,outputCanvas.width)+3] = 255 
         }
     }
 
+    //prints image on canvas
     outcontext.putImageData(out_imagedata,0,0)
     
 }

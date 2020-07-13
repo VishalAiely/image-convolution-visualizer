@@ -3,11 +3,13 @@ document.querySelector('#picture').onchange = function previewFile() {
     let file = document.querySelector('#picture').files[0]
     let reader = new FileReader()
 
+    //sets source of image
     reader.onloadend = function() {
         show.src = reader.result
     }
 
     show.onload = function() {
+        //loads canvas in with image and fits it to canvas
         let canvas = document.querySelector('#can')
         let ctx = canvas.getContext('2d')
 
@@ -37,6 +39,7 @@ document.querySelector('#picture').onchange = function previewFile() {
             data[i] = data[i+1] = data[i+2] = avg
         }
 
+        //outputs the greyscale image
         ctx.putImageData(imageData,0,0)
     }
 
