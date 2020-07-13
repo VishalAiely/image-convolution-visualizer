@@ -42,8 +42,6 @@ function applyKernalAt(kernel, x, y, canvaswidth, canvasheight, kernelNegative, 
 }
 
 function generateOut() {
-    console.log('Genrating Output')
-
     kernel = [[gN('00'),gN('01'),gN('02')],
               [gN('10'),gN('11'),gN('12')],
               [gN('20'),gN('21'),gN('22')]]
@@ -74,8 +72,6 @@ function generateOut() {
             out_data[getIndex(x,y,outputCanvas.width)+3] = 255 
         }
     }
-    
-    console.log(out_data)
 
     outcontext.putImageData(out_imagedata,0,0)
     

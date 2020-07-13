@@ -14,9 +14,9 @@ document.querySelector('#picture').onchange = function previewFile() {
         canvas.width = show.width
         canvas.height = show.height
 
-        if (show.width > 1000 || show.height > 1000)
+        if (show.width > 400 || show.height > 400)
         {
-            let newscale = 400/show.width
+            let newscale = 200/show.width
             canvas.width *= newscale
             canvas.height *= newscale
              ctx.scale(newscale,newscale)
@@ -28,7 +28,6 @@ document.querySelector('#picture').onchange = function previewFile() {
         show.style.display = 'none'
         let imageData = ctx.getImageData(0, 0, show.width, show.height);
         let data = imageData.data;
-        console.log(data)
 
         //used to calculate greyscale value
         let avg = 0
@@ -46,4 +45,6 @@ document.querySelector('#picture').onchange = function previewFile() {
     } else {
         show.src = ""
     }
+
+    document.querySelector('#apply').disabled = false
 }
